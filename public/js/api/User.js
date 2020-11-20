@@ -4,12 +4,15 @@
  * Имеет свойство URL, равное '/user'.
  * */
 class User {
+  constructor(URL) {
+    this.URL = '/user'
+  }
   /**
    * Устанавливает текущего пользователя в
    * локальном хранилище.
    * */
   static setCurrent(user) {
-
+    localStorage.user = user
   }
 
   /**
@@ -17,6 +20,7 @@ class User {
    * пользователе из локального хранилища.
    * */
   static unsetCurrent() {
+    localStorage.clear();
 
   }
 
@@ -25,7 +29,7 @@ class User {
    * из локального хранилища
    * */
   static current() {
-
+    return localStorage.user;
   }
 
   /**
@@ -33,7 +37,18 @@ class User {
    * авторизованном пользователе.
    * */
   static fetch( data, callback = f => f ) {
-
+    const options = {
+      url: this.URL + '/current',
+      data,
+      callback: (err, response) => {
+        if (response && response.user) {
+          this.unsetCurrent(response.user)
+        }
+        callback(err,response);
+      },
+      method: 'GET',
+    };
+    return createRequest(options);
   }
 
   /**
@@ -43,7 +58,19 @@ class User {
    * User.setCurrent.
    * */
   static login( data, callback = f => f ) {
-
+    const options = {
+      url: this.URL + '/login',
+      data,
+      responseType: 'json',
+      callback: (err, response) => {
+        if (response && response.user) {
+          this.setCurrent(response.user)
+        }
+        callback(err,response);
+      },
+      method: 'POST',
+    };
+    return createRequest(options);
   }
 
   /**
@@ -53,7 +80,19 @@ class User {
    * User.setCurrent.
    * */
   static register( data, callback = f => f ) {
-
+    const options = {
+      url: this.URL + '/register',
+      data,
+      responseType: 'json',
+      callback: (err, response) => {
+        if (response && response.user) {
+          this.setCurrent(response.user)
+        }
+        callback(err,response);
+      },
+      method: 'POST',
+    };
+    return createRequest(options);
   }
 
   /**
@@ -61,6 +100,19 @@ class User {
    * выхода необходимо вызвать метод User.unsetCurrent
    * */
   static logout( data, callback = f => f ) {
+    const options = {
+      url: this.URL + '/logout',
+      data,
+      responseType: 'json',
+      callback: (err, response) => {
+        if (response && response.user) {
+          this.unsetCurrent()
+        }
+        callback(err,response);
+      },
+      method: 'POST',
+    };
+    return createRequest(options);
 
   }
 }
