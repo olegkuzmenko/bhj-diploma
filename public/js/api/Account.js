@@ -4,8 +4,8 @@
  * Имеет свойство URL со значением '/account'
  * */
 class Account extends Entity{
-  constructor(...params) {
-    super(...params);
-    this.URL = `/account`;
-  }
+
+  static URL = `/account`;
+  
+
 }

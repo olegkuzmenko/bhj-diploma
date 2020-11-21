@@ -4,15 +4,15 @@
  * Имеет свойство URL, равное '/user'.
  * */
 class User {
-  constructor(URL) {
-    this.URL = '/user'
-  }
+
+  static URL = '/user'
+  
   /**
    * Устанавливает текущего пользователя в
    * локальном хранилище.
    * */
   static setCurrent(user) {
-    localStorage.user = user
+    localStorage.user = JSON.stringify(user)
   }
 
   /**
@@ -29,7 +29,9 @@ class User {
    * из локального хранилища
    * */
   static current() {
-    return localStorage.user;
+    if (localStorage.user) {
+      return JSON.parse(localStorage.user);
+    }
   }
 
   /**
@@ -37,18 +39,22 @@ class User {
    * авторизованном пользователе.
    * */
   static fetch( data, callback = f => f ) {
-    const options = {
+    return createRequest({
       url: this.URL + '/current',
       data,
+      responseType: 'json',
       callback: (err, response) => {
         if (response && response.user) {
-          this.unsetCurrent(response.user)
+          console.log(response.user)
+          this.setCurrent(response.user)
+        } else if (!response.success) {
+          console.log(response)
+          this.unsetCurrent()
         }
-        callback(err,response);
+        callback.call(this, err, response);
       },
       method: 'GET',
-    };
-    return createRequest(options);
+    });
   }
 
   /**
@@ -66,7 +72,7 @@ class User {
         if (response && response.user) {
           this.setCurrent(response.user)
         }
-        callback(err,response);
+        callback(err, response);
       },
       method: 'POST',
     };

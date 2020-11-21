@@ -3,9 +3,9 @@
  * Имеет свойство URL, равно пустой строке.
  * */
 class Entity {
-  constructor() {
-    this.URL = '';
-  }
+  
+  static URL = '';
+  
   
 
   /**

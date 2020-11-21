@@ -3,18 +3,41 @@
  * на сервер.
  * */
 const createRequest = (options = {}) => {
-  const url = options.url;
-  const mail = options.data.mail;
-  const password = options.data.password;
-  const method = options.method;
-  const callback = options.callback ? options.callback : null;
-  const response = options.responseType ? options.responseType : '';
+  
+  
+  const getValue = (rightKey) => {
+    if (options.hasOwnProperty(rightKey)) {
+      return options[rightKey];
+    } 
+    return null;
+  }
+
+  const url = getValue('url');
+  const data = getValue('data');
+  const method = getValue('method');
+  const callback = getValue('callback');
+  const response = getValue('responseType') ? getValue('responseType') : '';
+
+  const dataKeys = [];
+
+  if (data) {
+    dataKeys = Object.keys(data)
+  }
+
+  
+
+
   let xhr = new XMLHttpRequest;
   if ( method === 'GET') {
-    const builtRequest = `${url}?mail=${mail}&password=${password}`;
+    let requestString = '';
+    dataKeys.forEach( key => {
+      requestString += `${key}=${data[key]}&` 
+    })
+    const builtRequest = `${url}?${requestString}`.slice(0, -1);
     try {
       xhr.open(method, builtRequest);
       xhr.responseType = response;
+      xhr.withCredentials = true;
       xhr.send();
     }
     catch (e) {
@@ -22,13 +45,14 @@ const createRequest = (options = {}) => {
     }
     
   } else if (method === 'POST') {
-    builtRequest = url;
     let formData = new FormData;
-    formData.append('mail', mail);
-    formData.append('password', password);
+    dataKeys.forEach( key => {
+      formData.append(key, data[key])  
+    })
     try {
       xhr.open(method, url);
       xhr.responseType = response;
+      xhr.withCredentials = true;
       xhr.send(formData);
     }
     catch (e) {

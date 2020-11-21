@@ -22,7 +22,8 @@ class Sidebar {
     const sidebar = document.querySelector('.sidebar-mini');
     const sidebarToggle = (event) => {
       event.preventDefault();
-      sidebar.classList.toggle('sidebar-open sidebar-collapse');
+      sidebar.classList.toggle('sidebar-open');
+      sidebar.classList.toggle('sidebar-collapse');
     }
     sidebarButton.addEventListener('click', sidebarToggle)
 
@@ -36,6 +37,26 @@ class Sidebar {
    * выходу устанавливает App.setState( 'init' )
    * */
   static initAuthLinks() {
+    const loginButton = document.querySelector('.menu-item_login');
+    const registerButton = document.querySelector('.menu-item_register');
+
+    const openLoginModal = function (event) {
+      event.preventDefault()
+      const modal = App.getModal('login')
+      modal.open(); 
+    }
+
+    const openRegisterModal = function (event) {
+      event.preventDefault()
+      const modal = App.getModal('register')
+      modal.open(); 
+    }
+
+
+
+    loginButton.firstElementChild.addEventListener('click', openLoginModal)
+    registerButton.firstElementChild.addEventListener('click', openRegisterModal)
+
 
   }
 
