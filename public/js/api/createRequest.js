@@ -18,13 +18,13 @@ const createRequest = (options = {}) => {
   const callback = getValue('callback');
   const response = getValue('responseType') ? getValue('responseType') : '';
 
-  const dataKeys = [];
+  let dataKeys = [];
 
   if (data) {
     dataKeys = Object.keys(data)
   }
 
-  
+  console.log(url, data, method, response)
 
 
   let xhr = new XMLHttpRequest;
@@ -46,9 +46,11 @@ const createRequest = (options = {}) => {
     
   } else if (method === 'POST') {
     let formData = new FormData;
+    console.log(formData)
     dataKeys.forEach( key => {
       formData.append(key, data[key])  
     })
+
     try {
       xhr.open(method, url);
       xhr.responseType = response;

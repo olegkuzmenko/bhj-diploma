@@ -18,9 +18,7 @@ class AsyncForm {
     } else {
       throw new Error('такого элемента не существует')
     }
-    console.log(this)
     this.registerEvents();
-
   }
 
   /**
@@ -28,14 +26,10 @@ class AsyncForm {
    * вызывает метод submit()
    * */
   registerEvents() {
-    const all = this.element.querySelectorAll('form')
-    all.forEach(function(element) {
-      element.addEventListener('submit', function (e) {
-        e.preventDefault();
-        this.submit() 
-      })
+    this.element.addEventListener('submit', (e) => {
+      e.preventDefault();
+      this.submit() 
     })
-
   }
 
   /**
@@ -48,10 +42,10 @@ class AsyncForm {
   getData() {
     let object = {}
     const formData = new FormData(this.element);
-    formData.forEach(function (key, value) {
+    formData.forEach(function (value, key) {
       object[key] = value;
-      
     })
+    console.log(object)
     return object;
 
   }
@@ -65,7 +59,7 @@ class AsyncForm {
    * данные, полученные из метода getData()
    * */
   submit() {
-    const options = { data: this.getData() }
+    const options = this.getData();
     this.onSubmit(options)
 
   }

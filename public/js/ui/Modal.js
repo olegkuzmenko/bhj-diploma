@@ -14,7 +14,8 @@ class Modal {
   constructor( element ) {
     if (element) {
       this.element = element;
-      console.log(this)
+      //this.closers = element.querySelectorAll('button[data-dismiss="modal"]')
+
     } else {
       throw new Error('такого элемента не существует')
     }
@@ -27,11 +28,12 @@ class Modal {
    * (с помощью метода Modal.onClose)
    * */
   registerEvents() {
-    const all = this.element.querySelectorAll('[data-dismiss="modal"]')
-    all.forEach(function(element) {
-      console.log(this)
-      element.addEventListener('click', (e) => this.onClose(e));
-    })
+    const all = this.element.querySelectorAll('button[data-dismiss="modal"]')
+    all.forEach(item => {
+      item.addEventListener('click', (e) => {
+        this.onClose(e);
+      });
+    });
   };
 
   /**
@@ -39,16 +41,20 @@ class Modal {
    * Закрывает текущее окно (Modal.close())
    * */
   onClose(e) {
+    e.preventDefault(); 
     this.close();
+    this.unregisterEvents();
   }
   /**
    * Удаляет обработчики событий
    * */
   unregisterEvents() {
-    const all = this.element.querySelectorAll('[data-dismiss="modal"]')
-    all.forEach(function(element) {
-      element.removeEventListener('click', (e) => this.onClose(e))
-    }) 
+    const all = this.element.querySelectorAll('button[data-dismiss="modal"]')
+    all.forEach(item => {
+      item.removeEventListener('click', (e) => {
+        this.onClose(e);
+      });
+    });
   }
   /**
    * Открывает окно: устанавливает CSS-свойство display
@@ -61,6 +67,6 @@ class Modal {
    * Закрывает окно: удаляет CSS-свойство display
    * */
   close() {
-    this.element.style.display = '';
+    this.element.removeAttribute('style');
   }
 }
