@@ -5,7 +5,59 @@
       "email": "demo@demo",
       "password": "demo",
       "id": "1",
-      "isAuthorized": false
+      "isAuthorized": true
+    },
+    {
+      "id": "susmo4okhu4app0",
+      "isAuthorized": true
+    },
+    {
+      "id": "susmohekhu4pyiw",
+      "isAuthorized": true
+    },
+    {
+      "id": "susmppqkhu8jo2h",
+      "isAuthorized": true
+    },
+    {
+      "id": "susmq3pkhu8wol6",
+      "isAuthorized": true
+    },
+    {
+      "id": "susmq7gkhu90ccm",
+      "isAuthorized": true
+    },
+    {
+      "id": "susmq94khu91qdm",
+      "isAuthorized": true
+    },
+    {
+      "id": "susmq99khu93zrr",
+      "isAuthorized": true
+    },
+    {
+      "id": "susmqa6khu96qe2",
+      "isAuthorized": true
+    },
+    {
+      "id": "susmqeckhu9cng4",
+      "isAuthorized": true
+    },
+    {
+      "id": "susmr61khub2rmi",
+      "isAuthorized": true
+    },
+    {
+      "id": "susmr7ukhub3u3p",
+      "isAuthorized": true
+    },
+    {
+      "id": "susmr94khub56pn",
+      "isAuthorized": true
+    },
+    {
+      "id": "susms9jkhucpkxh",
+      "isAuthorized": true
     }
   ],
   "accounts": [

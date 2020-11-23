@@ -12,8 +12,13 @@ class AccountsWidget {
    * Если переданный элемент не существует,
    * необходимо выкинуть ошибку.
    * */
-  constructor( element ) {
-
+  constructor(element) {
+    if (element) {
+      this.element = element;
+    } else {
+      throw new Error('такого элемента не существует')
+    }
+    this.registerEvents();
   }
 
   /**
@@ -24,7 +29,19 @@ class AccountsWidget {
    * вызывает AccountsWidget.onSelectAccount()
    * */
   registerEvents() {
+    const createAccountButton = this.element.querySelector('.create-account')
+    createAccountButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      App.getModal('createAccount').open();
+    })
 
+    const accounts = this.element.querySelectorAll('.account')
+    accounts.forEach(element => {
+      element.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.onSelectAccount(e.target);
+      })
+    })
   }
 
   /**
@@ -38,6 +55,14 @@ class AccountsWidget {
    * метода renderItem()
    * */
   update() {
+    Account.list(User.current(), (error, response) => {
+      if (response) {
+        this.clear()
+        this.renderItem(respose.data)
+      } else {
+        console.log(error)
+      }
+    })
 
   }
 
@@ -47,7 +72,8 @@ class AccountsWidget {
    * в боковой колонке
    * */
   clear() {
-
+    const accounts = this.element.querySelectorAll('.account');
+    accounts.forEach(element => element.remove())
   }
 
   /**
@@ -57,7 +83,9 @@ class AccountsWidget {
    * счёта класс .active.
    * Вызывает App.showPage( 'transactions', { account_id: id_счёта });
    * */
-  onSelectAccount( element ) {
+  onSelectAccount(element) {
+    element.classList.add('active');
+    App.showPage( 'transactions', { account_id: id_счёта });
 
   }
 

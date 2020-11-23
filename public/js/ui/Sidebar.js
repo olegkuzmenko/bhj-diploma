@@ -39,23 +39,38 @@ class Sidebar {
   static initAuthLinks() {
     const loginButton = document.querySelector('.menu-item_login');
     const registerButton = document.querySelector('.menu-item_register');
+    const logoutButton = document.querySelector('.menu-item_logout')
 
     const openLoginModal = function (event) {
-      event.preventDefault()
-      const modal = App.getModal('login')
+      event.preventDefault();
+      const modal = App.getModal('login');
       modal.open(); 
     }
 
     const openRegisterModal = function (event) {
-      event.preventDefault()
-      const modal = App.getModal('register')
+      event.preventDefault();
+      const modal = App.getModal('register');
       modal.open(); 
+    }
+
+    const logout = function (event) {
+      event.preventDefault();
+      const data = User.current()
+      User.logout(data, (error, response) => {
+        if (response) {
+          App.setState('init')
+        } else {
+          console.log(error)
+        }
+      }) 
+
     }
 
 
 
     loginButton.firstElementChild.addEventListener('click', openLoginModal)
     registerButton.firstElementChild.addEventListener('click', openRegisterModal)
+    logoutButton.firstElementChild.addEventListener('click', logout)
 
 
   }

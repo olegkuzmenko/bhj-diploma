@@ -11,17 +11,14 @@ class RegisterForm extends AsyncForm {
    * и закрывает окно, в котором находится форма
    * */
   onSubmit(options) {
-    const data = JSON.stringify(options)
-    
     const callback = (error, response) => {
-      console.log(data)
-      if (response.succsess) {
+      if (response) {
         App.setState('user-logged');
         App.getModal('register').close()
       } else {
-        alert(error)
+        console.log(error)
       }
     }
-    User.register(data, callback)
+    User.register(options, callback)
   }
 }

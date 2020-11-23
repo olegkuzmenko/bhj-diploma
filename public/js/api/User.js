@@ -39,22 +39,21 @@ class User {
    * авторизованном пользователе.
    * */
   static fetch( data, callback = f => f ) {
-    return createRequest({
+    const options = {
       url: this.URL + '/current',
       data,
       responseType: 'json',
       callback: (err, response) => {
         if (response && response.user) {
-          console.log(response.user)
           this.setCurrent(response.user)
-        } else if (!response.success) {
-          console.log(response)
+        } else {
           this.unsetCurrent()
         }
-        callback.call(this, err, response);
+        callback(err, response);
       },
       method: 'GET',
-    });
+    };
+    return createRequest(options);
   }
 
   /**
@@ -89,15 +88,15 @@ class User {
     const options = {
       url: this.URL + '/register',
       data,
-      responseType: 'json',
+      method: 'POST',
       callback: (err, response) => {
         if (response && response.user) {
-          this.setCurrent(response.user)
+          this.setCurrent(response.user);
         }
-        callback(err,response);
-      },
-      method: 'POST',
+        callback(err, response);
+      }
     };
+
     return createRequest(options);
   }
 
@@ -110,15 +109,14 @@ class User {
       url: this.URL + '/logout',
       data,
       responseType: 'json',
+      method: 'POST',
       callback: (err, response) => {
         if (response && response.user) {
-          this.unsetCurrent()
+          this.unsetCurrent();
         }
-        callback(err,response);
-      },
-      method: 'POST',
+        callback(err, response);
+      }
     };
     return createRequest(options);
-
   }
 }

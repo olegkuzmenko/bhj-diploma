@@ -45,7 +45,6 @@ class AsyncForm {
     formData.forEach(function (value, key) {
       object[key] = value;
     })
-    console.log(object)
     return object;
 
   }

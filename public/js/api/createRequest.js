@@ -3,8 +3,6 @@
  * на сервер.
  * */
 const createRequest = (options = {}) => {
-  
-  
   const getValue = (rightKey) => {
     if (options.hasOwnProperty(rightKey)) {
       return options[rightKey];
@@ -16,16 +14,14 @@ const createRequest = (options = {}) => {
   const data = getValue('data');
   const method = getValue('method');
   const callback = getValue('callback');
-  const response = getValue('responseType') ? getValue('responseType') : '';
+  
+
 
   let dataKeys = [];
 
   if (data) {
     dataKeys = Object.keys(data)
   }
-
-  console.log(url, data, method, response)
-
 
   let xhr = new XMLHttpRequest;
   if ( method === 'GET') {
@@ -36,7 +32,7 @@ const createRequest = (options = {}) => {
     const builtRequest = `${url}?${requestString}`.slice(0, -1);
     try {
       xhr.open(method, builtRequest);
-      xhr.responseType = response;
+      xhr.responseType = 'json';
       xhr.withCredentials = true;
       xhr.send();
     }
@@ -46,14 +42,13 @@ const createRequest = (options = {}) => {
     
   } else if (method === 'POST') {
     let formData = new FormData;
-    console.log(formData)
     dataKeys.forEach( key => {
       formData.append(key, data[key])  
     })
 
     try {
       xhr.open(method, url);
-      xhr.responseType = response;
+      xhr.responseType = 'json';
       xhr.withCredentials = true;
       xhr.send(formData);
     }
@@ -65,11 +60,10 @@ const createRequest = (options = {}) => {
 
   xhr.onreadystatechange = () => {
     if (xhr.readyState === xhr.DONE && xhr.status === 200) {
-      if (xhr.responseText.success && options.callback) {
-        callback(e, response);
-
-      } else if (!xhr.responseText.success && options.callback) {
-        callback(e);
+      if (xhr.response.success) {
+        callback(null, xhr.response);
+      } else {
+        callback(xhr.response.error);
       }
     }
   }
