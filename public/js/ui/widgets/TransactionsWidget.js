@@ -11,6 +11,13 @@ class TransactionsWidget {
    * необходимо выкинуть ошибку.
    * */
   constructor( element ) {
+    if (element) {
+      this.element = element;
+      this.registerEvents();
+
+    } else {
+      throw new Error('такого элемента не существует')
+    }
 
   }
   /**
@@ -20,6 +27,15 @@ class TransactionsWidget {
    * экземпляра окна
    * */
   registerEvents() {
+    const setTransaction = (e) => {
+      if (e.target.classList.contains('create-income-button'))
+        App.getModal('newIncome').open();
+      
+        if (e.target.classList.contains('create-expense-button'))
+        App.getModal('newExpense').open();
+    }
+
+    this.element.addEventListener('click', (e) => setTransaction(e));
 
   }
 }

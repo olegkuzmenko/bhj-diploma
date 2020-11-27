@@ -32,7 +32,7 @@ class Entity {
   static create( data, callback = f => f ) {
     const modifiedData = Object.assign({ _method: 'PUT' }, data );
     const options = {
-      modifiedData,
+      data: modifiedData,
       url: this.URL,
       callback,
       method: 'GET',
@@ -52,6 +52,7 @@ class Entity {
       url: this.URL,
       callback,
       method: 'GET',
+      id,
     };
     return createRequest(options)
 
@@ -63,9 +64,9 @@ class Entity {
    * */
   static remove( id = '', data, callback = f => f ) {
 
-    const modifiedData = Object.assign({ _method: 'DELETE' }, { id },  data );
+    const modifiedData = Object.assign({ _method: 'DELETE', id },   data );
     const options = {
-      modifiedData,
+      data: modifiedData ,
       url: this.URL,
       callback,
       method: 'POST',
