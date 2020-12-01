@@ -122,24 +122,18 @@ class TransactionsPage {
 
     this.lastOptions = options;
 
-    const cbAccount = (err, response) => {
+    Account.get(options.account_id, '', (err, response) => {
       if (response) {
         this.renderTitle(response.data.name);
       }
       else {
         console.log(err);
       }
-    };
+    })
 
-    const cbTransaction = (err, response) => {
+    Transaction.list(options, (err, response) => {
       this.renderTransactions(response.data);
-    };
-
-
-
-    Account.get(options.account_id, '', cbAccount)
-    Transaction.list(options, cbTransaction)
-
+    })
   }
 
   /**
@@ -164,8 +158,8 @@ class TransactionsPage {
    * Форматирует дату в формате 2019-03-10 03:20:41 (строка)
    * в формат «10 марта 2019 г. в 03:20»
    * */
-  formatDate(date) {
-    return date
+  formatDate(date) { 
+    return `${new Date(date).toLocaleString('ru', { day: '2-digit', month: 'long', year: 'numeric' })} в ${new Date(date).toLocaleString('ru', {hour: '2-digit', minute: '2-digit'})}`;
 
   }
 
@@ -174,14 +168,14 @@ class TransactionsPage {
    * item - объект с информацией о транзакции
    * */
   getTransactionHTML(item) {
-    return `<div class="transaction transaction_${item.type} row">
+    return `<div class="transaction transaction_${item.type.toLowerCase()} row">
         <div class="col-md-7 transaction__details">
           <div class="transaction__icon">
               <span class="fa fa-money fa-2x"></span>
           </div>
           <div class="transaction__info">
               <h4 class="transaction__title">${item.name}</h4>
-              <div class="transaction__date">${this.formatDate(item.date)}</div>
+              <div class="transaction__date">${this.formatDate(item.created_at)}</div>
           </div>
         </div>
         <div class="col-md-3">
@@ -204,6 +198,7 @@ class TransactionsPage {
    * используя getTransactionHTML
    * */
   renderTransactions(data) {
+    this.element.querySelector('.content').innerHTML = '';
     data.forEach((item) => {
       this.element.querySelector('.content').innerHTML += this.getTransactionHTML(item);
     })

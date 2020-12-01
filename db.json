@@ -21,7 +21,7 @@
     },
     {
       "id": "susmq3pkhu8wol6",
-      "isAuthorized": true
+      "isAuthorized": false
     },
     {
       "id": "susmq7gkhu90ccm",
@@ -77,6 +77,11 @@
       "name": "Бизнес",
       "user_id": "1",
       "id": "3"
+    },
+    {
+      "name": "Сбер",
+      "user_id": "1",
+      "id": "6qb9p274uki650o5c"
     }
   ],
   "transactions": [
@@ -118,29 +123,11 @@
     },
     {
       "account_id": "2",
-      "created_at": "2019-09-25 15:03:02",
-      "id": "17",
-      "name": "Овощи",
-      "sum": 300,
-      "type": "income",
-      "user_id": "1"
-    },
-    {
-      "account_id": "2",
       "created_at": "2019-09-26 14:47:02",
       "id": "6",
       "name": "Мясо",
       "sum": 600,
       "type": "income",
-      "user_id": "1"
-    },
-    {
-      "account_id": "2",
-      "created_at": "2019-09-27 13:27:02",
-      "id": "7",
-      "name": "Долг в банк",
-      "sum": 5000,
-      "type": "expense",
       "user_id": "1"
     },
     {
@@ -154,24 +141,6 @@
     },
     {
       "account_id": "3",
-      "created_at": "2017-09-17 13:27:02",
-      "id": "10",
-      "name": "На стволы",
-      "sum": 6000,
-      "type": "expense",
-      "user_id": "1"
-    },
-    {
-      "account_id": "3",
-      "created_at": "2017-12-27 13:27:02",
-      "id": "11",
-      "name": "Прибыль с банка",
-      "sum": 1500000,
-      "type": "income",
-      "user_id": "1"
-    },
-    {
-      "account_id": "3",
       "created_at": "2018-01-15 13:27:02",
       "id": "12",
       "name": "Прибыль с магазина",
@@ -180,31 +149,44 @@
       "user_id": "1"
     },
     {
-      "account_id": "3",
-      "created_at": "2018-01-15 13:27:02",
-      "id": "13",
-      "name": "Подарок сизого",
-      "sum": 20000,
-      "type": "income",
-      "user_id": "1"
+      "id": "6qb9p2537ki63cof5",
+      "type": "INCOME",
+      "name": "Зарплата",
+      "sum": 250000,
+      "account_id": "311dk243kgki4j3ddh",
+      "created_at": "2020-12-01T14:43:11.392Z"
     },
     {
-      "account_id": "3",
-      "created_at": "2017-09-15 13:27:02",
-      "id": "14",
-      "name": "На охрану",
-      "sum": 60000,
-      "type": "expense",
-      "user_id": "1"
+      "id": "6qb9p26hvki64lff7",
+      "type": "INCOME",
+      "name": "Перевод",
+      "sum": 5000,
+      "account_id": "2",
+      "created_at": "2020-12-01T15:17:59.250Z"
     },
     {
-      "account_id": "3",
-      "created_at": "2017-10-15 13:27:02",
-      "id": "15",
-      "name": "На бумер",
-      "sum": 300000,
-      "type": "expense",
-      "user_id": "1"
+      "id": "6qb9p26onki64omo1",
+      "type": "EXPENSE",
+      "name": "Сыр",
+      "sum": 300,
+      "account_id": "2",
+      "created_at": "2020-12-01T15:20:28.608Z"
+    },
+    {
+      "id": "6qb9p274xki6513ar",
+      "type": "INCOME",
+      "name": "Зарплата",
+      "sum": 250000,
+      "account_id": "6qb9p274uki650o5c",
+      "created_at": "2020-12-01T15:30:10.034Z"
+    },
+    {
+      "id": "6qb9p2752ki651k4p",
+      "type": "INCOME",
+      "name": "Сценарий",
+      "sum": 1000000,
+      "account_id": "311dk245jxki4ktslm",
+      "created_at": "2020-12-01T15:30:31.848Z"
     }
   ]
 }

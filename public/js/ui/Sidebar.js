@@ -43,14 +43,12 @@ class Sidebar {
 
     const openLoginModal = function (event) {
       event.preventDefault();
-      const modal = App.getModal('login');
-      modal.open(); 
+      App.getModal('login').open(); 
     }
 
     const openRegisterModal = function (event) {
       event.preventDefault();
-      const modal = App.getModal('register');
-      modal.open(); 
+      App.getModal('register').open(); 
     }
 
     const logout = function (event) {

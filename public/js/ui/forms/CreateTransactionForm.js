@@ -24,18 +24,18 @@ class CreateTransactionForm extends AsyncForm {
    * Обновляет в форме всплывающего окна выпадающий список
    * */
   renderAccountsList() {
-    
-    const cb = (error, response) => {
-      if (response) {
-        response.data.forEach((account) => {
-          this.element.querySelector('select').innerHTML += `<option value="${account.id}">${account.name}</option>`
-        });
-      }
-      else
-        console.log(error);
-    }
 
-    Account.list(User.current(), cb)
+    Account.list(User.current(), (error, response) => {
+      if (!response) {
+        console.log(error);
+      }
+      this.element.querySelector('select').innerHTML = '';
+      response.data.forEach((account) => {
+        this.element.querySelector('select').innerHTML += `<option value="${account.id}">${account.name}</option>`
+      });
+
+        
+    })
   }
 
   /**
@@ -45,19 +45,19 @@ class CreateTransactionForm extends AsyncForm {
    * в котором находится форма
    * */
   onSubmit(options) {
-    const cb = (error, response) => {
-      if (response) {
-        App.update();
-        this.element.reset();
-        if (options.type === 'expense')
-          App.getModal('newExpense').close();
-        else if (options.type === 'income')
-          App.getModal('newIncome').close();
-      }
-      else
-        console.log(error);
-    }
 
-    Transaction.create(options, cb)
+    Transaction.create(options, (error, response) => {
+      if (!response) {
+        console.log(error);
+      }
+      App.update();
+      this.element.reset();
+      if (options.type === 'expense') {
+        App.getModal('newExpense').close();
+      }    
+      else if (options.type === 'income') {
+        App.getModal('newIncome').close();
+      }
+    })
   }
 }

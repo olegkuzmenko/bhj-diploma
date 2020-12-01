@@ -28,11 +28,12 @@ class TransactionsWidget {
    * */
   registerEvents() {
     const setTransaction = (e) => {
-      if (e.target.classList.contains('create-income-button'))
+      if (e.target.classList.contains('create-income-button')) {
         App.getModal('newIncome').open();
-      
-        if (e.target.classList.contains('create-expense-button'))
+      }  
+      if (e.target.classList.contains('create-expense-button')) {
         App.getModal('newExpense').open();
+      } 
     }
 
     this.element.addEventListener('click', (e) => setTransaction(e));

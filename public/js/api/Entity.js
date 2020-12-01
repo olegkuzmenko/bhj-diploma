@@ -35,7 +35,7 @@ class Entity {
       data: modifiedData,
       url: this.URL,
       callback,
-      method: 'GET',
+      method: 'POST',
     };
     return createRequest(options);
 

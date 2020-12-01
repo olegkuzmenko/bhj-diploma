@@ -103,10 +103,7 @@ class AccountsWidget {
    * */
   getAccountHTML(item) {
     return `<li class="account" data-id="${item.id}">
-      <a href="#">
-        <span>${item.name}</span> /
-        <span>${item.sum} ₽</span>
-      </a>
+      <a href="#">${item.name} ${item.sum} ₽</a>
     </li>`
 
   }

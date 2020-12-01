@@ -58,8 +58,6 @@ class AsyncForm {
    * данные, полученные из метода getData()
    * */
   submit() {
-    const options = this.getData();
-    this.onSubmit(options)
-
+    this.onSubmit(this.getData())
   }
 }

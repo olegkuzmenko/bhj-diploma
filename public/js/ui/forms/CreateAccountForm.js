@@ -11,7 +11,8 @@ class CreateAccountForm extends AsyncForm{
    * и сбрасывает форму
    * */
   onSubmit(options) {
-    const callback = (error, response) => {
+    
+    Account.create(options, (error, response) => {
       if (response) {
         App.getModal('createAccount').close();
         this.element.reset()
@@ -19,7 +20,6 @@ class CreateAccountForm extends AsyncForm{
       } else {
         console.log(error)
       }
-    }
-    Account.create(options, (error, response) => callback(error, response))
+    })
   }
 }
