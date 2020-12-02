@@ -64,7 +64,7 @@ class Entity {
    * */
   static remove( id = '', data, callback = f => f ) {
 
-    const modifiedData = Object.assign({ _method: 'DELETE'}, id ,  data );
+    const modifiedData = Object.assign({ _method: 'DELETE', id },  data );
     const options = {
       data: modifiedData ,
       url: this.URL,
