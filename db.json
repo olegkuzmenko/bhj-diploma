@@ -79,9 +79,9 @@
       "id": "3"
     },
     {
-      "name": "Сбер",
+      "name": "Авангард",
       "user_id": "1",
-      "id": "6qb9p274uki650o5c"
+      "id": "6qb9p2d90ki7iai9s"
     }
   ],
   "transactions": [
@@ -119,24 +119,6 @@
       "name": "Фрукты",
       "sum": 250,
       "type": "income",
-      "user_id": "1"
-    },
-    {
-      "account_id": "2",
-      "created_at": "2019-09-26 14:47:02",
-      "id": "6",
-      "name": "Мясо",
-      "sum": 600,
-      "type": "income",
-      "user_id": "1"
-    },
-    {
-      "account_id": "3",
-      "created_at": "2017-10-15 13:27:02",
-      "id": "9",
-      "name": "На банду",
-      "sum": 15000,
-      "type": "expense",
       "user_id": "1"
     },
     {
@@ -187,6 +169,46 @@
       "sum": 1000000,
       "account_id": "311dk245jxki4ktslm",
       "created_at": "2020-12-01T15:30:31.848Z"
+    },
+    {
+      "id": "6qb9p2d25ki7hyqvo",
+      "type": "EXPENSE",
+      "name": "на яхту",
+      "sum": 190000,
+      "account_id": "3",
+      "created_at": "2020-12-02T14:20:01.811Z"
+    },
+    {
+      "id": "6qb9p2d98ki7ibv6s",
+      "type": "INCOME",
+      "name": "Сценарий ",
+      "sum": 1000000,
+      "account_id": "3",
+      "created_at": "2020-12-02T14:30:13.923Z"
+    },
+    {
+      "id": "6qb9p2dm7ki7ivjd8",
+      "type": "INCOME",
+      "name": "Сценарий",
+      "sum": 1000000,
+      "account_id": "6qb9p2d90ki7iai9s",
+      "created_at": "2020-12-02T14:45:31.723Z"
+    },
+    {
+      "id": "6qb9p2dn7ki7iwewv",
+      "type": "INCOME",
+      "name": "Книга",
+      "sum": 600000,
+      "account_id": "6qb9p2dmvki7ivulr",
+      "created_at": "2020-12-02T14:46:12.606Z"
+    },
+    {
+      "id": "6qb9p2dndki7iwr67",
+      "type": "INCOME",
+      "name": "Игра",
+      "sum": 700000,
+      "account_id": "6qb9p2dmvki7ivulr",
+      "created_at": "2020-12-02T14:46:28.494Z"
     }
   ]
 }

@@ -44,10 +44,10 @@ class TransactionsPage {
 
     const remove = (e) => {
 
-      if (e.target.classList.contains('remove-account'))
+      if (e.target.closest('button').classList.contains('remove-account'))
         this.removeAccount();
 
-      if (e.target.classList.contains('transaction__remove'))
+      if (e.target.closest('button').classList.contains('transaction__remove'))
         this.removeTransaction(e.target.getAttribute('data-id'))
     }
 
@@ -94,18 +94,19 @@ class TransactionsPage {
     }
 
     const ask = confirm('Вы действительно хотите удалить транзакцию?');
-    const cb = (error, response) => {
-      if (response) {
-        App.update();
-      }
-      else
-        console.log(error);
-    };
+
     
     if (ask) {
-      Transaction.remove(id, {}, cb)
+      Transaction.remove(id, {}, (error, response) => {
+        if (response) {
+          App.update();
+        }
+        else {
+          console.log(error);
+  
+        }  
+      })
     }
-
   }
 
   /**

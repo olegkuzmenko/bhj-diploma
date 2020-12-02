@@ -14,11 +14,7 @@ const createRequest = (options = {}) => {
   const data = getValue('data');
   const method = getValue('method');
   const callback = getValue('callback');
-  /*
-  if (options.method === 'GET' && options.id) {
-    url += `/${options.id}`;
-  }
-  */
+
   let dataKeys = [];
 
   if (data) {
@@ -44,6 +40,7 @@ const createRequest = (options = {}) => {
 
   try {
     if ( method === 'GET') {
+      console.log(url)
       xhr.open(method, builtRequest);
       xhr.send();
     
