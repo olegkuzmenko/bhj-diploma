@@ -77,11 +77,6 @@
       "name": "Бизнес",
       "user_id": "1",
       "id": "3"
-    },
-    {
-      "name": "Сбер",
-      "user_id": "1",
-      "id": "6qb9p2ehoki7jxg8p"
     }
   ],
   "transactions": [
@@ -139,14 +134,6 @@
       "created_at": "2020-12-01T14:43:11.392Z"
     },
     {
-      "id": "6qb9p26hvki64lff7",
-      "type": "INCOME",
-      "name": "Перевод",
-      "sum": 5000,
-      "account_id": "2",
-      "created_at": "2020-12-01T15:17:59.250Z"
-    },
-    {
       "id": "6qb9p274xki6513ar",
       "type": "INCOME",
       "name": "Зарплата",
@@ -201,6 +188,14 @@
       "sum": 700000,
       "account_id": "6qb9p2dmvki7ivulr",
       "created_at": "2020-12-02T14:46:28.494Z"
+    },
+    {
+      "id": "6qb9p2hmski8gduzd",
+      "type": "INCOME",
+      "name": "Сценарий",
+      "sum": 1000000,
+      "account_id": "6qb9p2emjki7k2q3m",
+      "created_at": "2020-12-03T06:23:33.912Z"
     }
   ]
 }

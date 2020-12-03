@@ -43,12 +43,15 @@ class TransactionsPage {
 
 
     const remove = (e) => {
+      if (!e.target.closest('button')) {
+        return;
+      };
 
       if (e.target.closest('button').classList.contains('remove-account'))
         this.removeAccount();
 
       if (e.target.closest('button').classList.contains('transaction__remove'))
-        this.removeTransaction(e.target.getAttribute('data-id'))
+        this.removeTransaction(e.target.parentElement.getAttribute('data-id'))
     }
 
     this.element.addEventListener('click', (e) => remove(e));
