@@ -40,7 +40,6 @@ const createRequest = (options = {}) => {
 
   try {
     if ( method === 'GET') {
-      console.log(url)
       xhr.open(method, builtRequest);
       xhr.send();
     

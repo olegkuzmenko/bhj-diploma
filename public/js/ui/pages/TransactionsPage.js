@@ -46,12 +46,17 @@ class TransactionsPage {
       if (!e.target.closest('button')) {
         return;
       };
+      
 
-      if (e.target.closest('button').classList.contains('remove-account'))
+      if (e.target.closest('button').classList.contains('remove-account')) {
         this.removeAccount();
+      }
+        
 
-      if (e.target.closest('button').classList.contains('transaction__remove'))
-        this.removeTransaction(e.target.parentElement.getAttribute('data-id'))
+      if (e.target.closest('button').classList.contains('transaction__remove')) {
+        this.removeTransaction(e.target.closest('button').getAttribute('data-id'))
+      }
+
     }
 
     this.element.addEventListener('click', (e) => remove(e));
@@ -100,13 +105,13 @@ class TransactionsPage {
 
     
     if (ask) {
+      console.log(id)
       Transaction.remove(id, {}, (error, response) => {
         if (response) {
           App.update();
         }
         else {
           console.log(error);
-  
         }  
       })
     }
